@@ -6,7 +6,7 @@ var angular = require('angular');
 
 SwaggerEditor.controller('PreviewCtrl', function PreviewCtrl(Storage, Builder,
   ASTManager, Editor, FocusedPath, TagManager, Preferences, FoldStateManager,
-  $scope, $rootScope, $stateParams, $sessionStorage) {
+  $scope, $rootScope, $stateParams, $sessionStorage, defaults) {
   $scope.loadLatest = loadLatest;
   $scope.tagIndexFor = TagManager.tagIndexFor;
   $scope.getAllTags = TagManager.getAllTags;
@@ -21,7 +21,9 @@ SwaggerEditor.controller('PreviewCtrl', function PreviewCtrl(Storage, Builder,
   $scope.showPath = showPath;
   $scope.foldEditor = FoldStateManager.foldEditor;
   $scope.listAllOperation = listAllOperation;
-  $scope.listAllDefnitions = listAllDefnitions;
+  $scope.listAllDefinitions = listAllDefinitions;
+  $scope.view = 'templates/preview/' + defaults.previewTemplate +
+    '/preview.html';
 
   Storage.addChangeListener('yaml', update);
   Preferences.onChange(function() {
@@ -257,7 +259,7 @@ SwaggerEditor.controller('PreviewCtrl', function PreviewCtrl(Storage, Builder,
    * Folds all definitions regardless of their current fold status
    *
   */
-  function listAllDefnitions() {
+  function listAllDefinitions() {
     _.each($scope.specs.definitions, function(definition, definitionName) {
       if (_.isObject(definition)) {
         definition.$folded = true;

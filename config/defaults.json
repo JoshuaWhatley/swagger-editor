@@ -39,5 +39,6 @@
   "enableTryIt": true,
   "brandingCssClass": "",
   "importProxyUrl": "https://cors-it.herokuapp.com/?url=",
-  "pointerResolutionBasePath": null
+  "pointerResolutionBasePath": null,
+  "previewTemplate": "swagger-ui"
 }

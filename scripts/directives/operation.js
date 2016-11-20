@@ -6,7 +6,8 @@ SwaggerEditor.directive('swaggerOperation', function(defaults) {
   return {
     restrict: 'E',
     replace: true,
-    template: require('templates/operation.html'),
+    template: require('templates/preview/' + defaults.previewTemplate +
+      '/operation.html'),
     scope: false,
     link: function($scope) {
       $scope.isTryOpen = false;

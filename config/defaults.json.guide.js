@@ -155,5 +155,12 @@ var defaults = {
    *
    * More info: https://github.com/swagger-api/swagger-editor/issues/977#issuecomment-232254578
   */
-  pointerResolutionBasePath: null
+  pointerResolutionBasePath: null,
+
+  /*
+   * Specifies which template should be used for the Swagger preview
+   *   - 'default': default preview
+   *   - 'swagger-ui': preview matching styling followed in the Swagger UI project 
+   */
+  previewTemplate: 'default'
 };
