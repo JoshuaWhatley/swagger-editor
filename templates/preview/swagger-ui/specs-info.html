@@ -1,0 +1,21 @@
+<div id="api_info" class="info">
+  <div class="info_title" ng-click="
+    specs.info.$folded = !specs.info.$folded;
+    foldEditor(['info'], specs.info.$folded);">
+    {{specs.info.title}}
+  </div>
+
+  <div class="info-container section-content" collapse-when="specs.info.$folded">
+    <div marked="specs.info.description" class="info_description markdown"></div>
+    <div class="info_email" ng-if="specs.info.contact">
+      <a ng-if="specs.info.contact.email" ng-bind-html="specs.info.contact.email | linky:'_blank'">
+        {{ specs.info.contact.name ? specs.info.contact.name : 'Contact the developer'}}
+      </a>
+    </div>
+    <div ng-if="specs.info.license" class="info_license">
+      <p ng-if="!specs.info.license.url">{{specs.info.license.name}}</p>
+      <a ng-if="specs.info.license.url" target="_blank" 
+        href="{{specs.info.license.url}}">{{specs.info.license.name}}</a>
+    </div>
+  </div>
+</div>

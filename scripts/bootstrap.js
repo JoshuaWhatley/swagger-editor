@@ -69,24 +69,6 @@ $(function() {
       $templateCache.put('templates/open-examples.html',
         require('templates/open-examples.html'));
 
-      $templateCache.put('templates/default/operation.html',
-        require('templates/preview/default/operation.html'));
-
-      $templateCache.put('templates/default/specs-info.html',
-        require('templates/preview/default/specs-info.html'));
-
-      $templateCache.put('templates/default/tags.html',
-        require('templates/preview/default/tags.html'));
-
-      $templateCache.put('templates/default/try-operation.html',
-        require('templates/preview/default/try-operation.html'));
-
-      $templateCache.put('templates/default/path.html',
-        require('templates/preview/default/path.html'));
-
-      $templateCache.put('templates/default/preview.html',
-        require('templates/preview/default/preview.html'));
-
       $templateCache.put('templates/paste-json.html',
         require('templates/paste-json.html'));
 
@@ -113,6 +95,30 @@ $(function() {
 
       $templateCache.put('templates/auth/oauth2.html',
         require('templates/auth/oauth2.html'));
+
+      $templateCache.put('templates/default/operation.html',
+        require('templates/preview/default/operation.html'));
+
+      $templateCache.put('templates/default/specs-info.html',
+        require('templates/preview/default/specs-info.html'));
+
+      $templateCache.put('templates/default/tags.html',
+        require('templates/preview/default/tags.html'));
+
+      $templateCache.put('templates/default/try-operation.html',
+        require('templates/preview/default/try-operation.html'));
+
+      $templateCache.put('templates/default/path.html',
+        require('templates/preview/default/path.html'));
+
+      $templateCache.put('templates/default/preview.html',
+        require('templates/preview/default/preview.html'));
+
+      $templateCache.put('templates/swagger-ui/preview.html',
+        require('templates/preview/swagger-ui/preview.html'));
+
+      $templateCache.put('templates/swagger-ui/specs-info.html',
+        require('templates/preview/swagger-ui/specs-info.html'));
     });
 
     angular.bootstrap(window.document, ['SwaggerEditor']);

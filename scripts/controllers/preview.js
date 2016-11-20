@@ -22,7 +22,7 @@ SwaggerEditor.controller('PreviewCtrl', function PreviewCtrl(Storage, Builder,
   $scope.foldEditor = FoldStateManager.foldEditor;
   $scope.listAllOperation = listAllOperation;
   $scope.listAllDefinitions = listAllDefinitions;
-  $scope.view = 'templates/preview/' + defaults.previewTemplate +
+  $scope.view = 'templates/' + defaults.previewTemplate +
     '/preview.html';
 
   Storage.addChangeListener('yaml', update);
