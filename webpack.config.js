@@ -50,6 +50,11 @@ var config = {
         query: {mimetype: "image/png"}
       },
       {
+        test: /\.gif$/,
+        loader: "url",
+        query: {mimetype: "image/gif"}
+      },
+      {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract(
                     'css?sourceMap' +
