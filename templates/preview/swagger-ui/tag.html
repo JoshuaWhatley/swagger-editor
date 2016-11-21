@@ -1,0 +1,27 @@
+<div class="heading">
+  <h2>
+    <a href="#!/{{tag.id}}" class="toggleEndpointList" data-id="{{tag.id}}">{{tag.name}}</a>
+    <span ng-if="tag.description"> : {{tag.description}}</span>
+  </h2>
+  <ul class="options">
+    <li>
+      <a href="#!/{{tag.id}}" id="endpointListTogger_{{tag.id}}" 
+        class="toggleEndpointList" data-id="{{tag.id}}" 
+        data-sw-translate="">
+        Show/Hide
+      </a>
+    </li>
+    <li>
+      <a href="#" class="collapseResource" data-id="{{tag.id}}" 
+        data-sw-translate="">
+        List Operations
+      </a>
+    </li>
+    <li>
+      <a href="#" class="expandResource" data-id="{{tag.id}}" 
+        data-sw-translate="">
+        Expand Operations
+      </a>
+    </li>
+  </ul>
+</div>

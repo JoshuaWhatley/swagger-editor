@@ -119,6 +119,12 @@ $(function() {
 
       $templateCache.put('templates/swagger-ui/specs-info.html',
         require('templates/preview/swagger-ui/specs-info.html'));
+
+      $templateCache.put('templates/swagger-ui/tag.html',
+        require('templates/preview/swagger-ui/tag.html'));
+
+      $templateCache.put('templates/swagger-ui/path.html',
+        require('templates/preview/swagger-ui/path.html'));
     });
 
     angular.bootstrap(window.document, ['SwaggerEditor']);

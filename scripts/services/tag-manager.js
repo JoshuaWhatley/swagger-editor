@@ -9,6 +9,7 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
   var Tag = function(name, description) {
     this.name = name;
     this.description = description;
+    this.id = name.replace(" ", "_");
   };
 
   this.resetTags = function resetTags() {

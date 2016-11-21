@@ -1,6 +1,28 @@
 <div class="swagger-section">
   <div id="message-bar" class="swagger-ui-wrap message-success" data-sw-translate=""></div>
+
   <div id="swagger-ui-container" class="swagger-ui-wrap">
     <ng-include src="'templates/swagger-ui/specs-info.html'"></ng-include>
+
+    <div id="resources_container">
+      <div class="authorize-wrapper"></div>
+      <ul id="resources">
+        <li
+          class="resource"
+          ng-include src="'templates/swagger-ui/tag.html'"
+          ng-repeat="tag in getAllTags(true) track by $index"
+          id="resource_{{tag.id}}">
+       </li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <h4 style="color: #999">
+        [<span style="font-variant: small-caps">base url</span>:
+        <span>{{specs.basePath}}</span>, 
+        <span style="font-variant: small-caps">api version</span>:
+        <span>{{specs.info.version}}</span>]
+      </h4>
+    </div>
   </div>
 </div>
