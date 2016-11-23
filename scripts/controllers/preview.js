@@ -69,7 +69,7 @@ SwaggerEditor.controller('PreviewCtrl', function PreviewCtrl(Storage, Builder,
       if (result.specs) {
         TagManager.registerTagsFromSpec(result.specs);
 
-        // Retrive and put back fold state
+        // Retrieve and put back fold state
         _.defaultsDeep(result.specs,
           FoldStateManager.getFoldedTree($rootScope.specs, result.specs));
 
