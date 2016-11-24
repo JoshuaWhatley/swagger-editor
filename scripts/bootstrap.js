@@ -123,8 +123,8 @@ $(function() {
       $templateCache.put('templates/swagger-ui/tag.html',
         require('templates/preview/swagger-ui/tag.html'));
 
-      $templateCache.put('templates/swagger-ui/path.html',
-        require('templates/preview/swagger-ui/path.html'));
+      $templateCache.put('templates/swagger-ui/operation.html',
+        require('templates/preview/swagger-ui/operation.html'));
     });
 
     angular.bootstrap(window.document, ['SwaggerEditor']);
