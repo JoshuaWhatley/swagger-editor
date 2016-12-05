@@ -9,8 +9,8 @@
       <ul id="resources">
         <li
           class="resource"
-          ng-include src="'templates/swagger-ui/tag.html'"
           ng-repeat="tag in getAllTags(true) track by $index"
+          ng-include src="'templates/swagger-ui/tag.html'"
           id="resource_{{tag.id}}">
        </li>
       </ul>

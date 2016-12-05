@@ -24,12 +24,13 @@
       </a>
     </li>
   </ul>
-  {{tag}}
 </div>
-<ul class="endpoints" id="{{tag.id}}_endpoint_list">
+<ul 
+  class="endpoints" 
+  id="{{tag.id}}_endpoint_list">
   <li
     class="endpoint"
-    ng-repeat="endpoint in tag.endpoints"
-    id="{{tag.id}}_FILL_IN_OPERATION_ID">
+    ng-include src="'templates/swagger-ui/operation.html'"
+    ng-repeat="operation in tag.operations">
   </li>
 </ul>

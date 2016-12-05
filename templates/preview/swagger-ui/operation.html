@@ -1,0 +1,54 @@
+<ul class="operations">
+  <li
+    class="operation {{operation.verb}}" 
+    id="{{tag.id}}_{{operation.operationId}}">
+    <div class="heading">
+      <h3>
+        <span class="http_method">
+          <a
+            href="#!/{{tag.id}}/{{operation.operationId}}"
+            class="toggleOperation">
+            {{operation.verb}}
+          </a>
+        </span>
+        <span class="path">
+          <a 
+            href="#!/{{tag.id}}/{{operation.operationId}}"
+            class="toggleOperation">
+            {{operation.path}}
+          </a>
+        </span>
+      </h3>
+      <ul class="options">
+        <li>
+          <a 
+            href="#!/{{tag.id}}/{{operation.operationId}}"
+            class="toggleOperation">
+            <span class="markdown">
+              <p>{{operation.summary}}</p>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div 
+      class="content" 
+      id="{{tag.id}}_{{operation.operationId}}_content">
+      <form accept-charset="UTF-8" class="sandbox">
+        <h4 data-sw-translate>Parameters</h4>
+        <table class="fullwidth parameters">
+          <thead>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter</th>
+            <th style="width: 310px; max-width: 310px" data-sw-translate="">Value</th>
+            <th style="width: 200px; max-width: 200px" data-sw-translate="">Description</th>
+            <th style="width: 220px; max-width: 230px" data-sw-translate="">Data Type</th>
+            <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter Type</th>
+          </thead>
+          <tbody class="operation-params">
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </li>
+</ul>

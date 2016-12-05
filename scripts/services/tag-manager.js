@@ -6,11 +6,11 @@ var _ = require('lodash');
 SwaggerEditor.service('TagManager', function TagManager($stateParams) {
   var tags = [];
 
-  var Tag = function(name, description, paths) {
+  var Tag = function(name, description, operations) {
     this.name = name;
     this.description = description;
     this.id = name.replace(" ", "_");
-    this.paths = paths ? paths : [];
+    this.operations = operations ? operations : [];
   };
 
   this.resetTags = function resetTags() {
@@ -45,16 +45,18 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
     if (Array.isArray(spec.tags)) {
       spec.tags.forEach(function(tag) {
         if (tag && angular.isString(tag.name)) {
-          registerTag(tag.name, tag.description, tag.paths);
+          registerTag(tag.name, tag.description, tag.operations);
         }
       });
     }
 
     _.each(spec.paths, function(endpoint, path) {
-      _.each(endpoint, function(operation) {
+      _.each(endpoint, function(operation, verb) {
         if (_.isObject(operation)) {
+          operation.path = path;
+          operation.verb = verb;
           _.each(operation.tags, function(tag) {
-            registerOperation(path, operation, tag);
+            registerOperation(operation, tag);
           });
         }
       });
@@ -71,9 +73,9 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
   /**
    * @param {string} tagName - tag name
    * @param {string} tagDescription - description
-   * @param {array}  paths - paths
+   * @param {array}  operations - operations
   */
-  function registerTag(tagName, tagDescription, paths) {
+  function registerTag(tagName, tagDescription, operations) {
     if (!tagName) {
       return;
     }
@@ -81,18 +83,17 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
       return tag.name;
     });
     if (!_.includes(tagNames, tagName)) {
-      tags.push(new Tag(tagName, tagDescription, paths));
+      tags.push(new Tag(tagName, tagDescription, operations));
     }
   }
 
   /**
-   * @param {string}    path - path
    * @param {Operation} operation - operation
    * @param {string}    tagName - tag name
    * @param {string}    tagDescription - description
   */
-  function registerOperation(path, operation, tagName, tagDescription) {
-    if (!path || !operation || !tagName) {
+  function registerOperation(operation, tagName, tagDescription) {
+    if (!operation || !tagName) {
       return;
     }
     var tag = _.find(tags, function(entry) {
@@ -102,13 +103,12 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
       tag = new Tag(tagName, tagDescription);
       tags.push(tag);
     }
-    var existingPath = _.find(tags.paths, function(entry) {
-      return entry === path;
+    var existingOperation = _.find(tag.operations, function(entry) {
+      return entry.operationId === operation.operationId;
     });
-    if (!existingPath) {
-      tag.paths[path] = [];
+    if (!existingOperation) {
+      tag.operations.push(operation);
     }
-    tag.paths[path].push(operation);
   }
 
   this.registerOperation = registerOperation;
