@@ -22,6 +22,11 @@ SwaggerEditor.directive('swaggerOperation', function(defaults) {
        * @returns {array} - array of parameters
       */
       $scope.getParameters = function getParameters() {
+        if (!$scope.path || !$scope.operation && $scope.endpoint) {
+          $scope.path = $scope.endpoint.path;
+          $scope.operation = $scope.endpoint.operation;
+        }
+
         var hasPathParameter = _.isArray($scope.path.parameters);
         var hasOperationParameter = _.isArray($scope.operation.parameters);
         var operationParameters = $scope.operation.parameters;

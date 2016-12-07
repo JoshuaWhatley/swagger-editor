@@ -5,7 +5,7 @@
   </h2>
   <ul class="options">
     <li>
-      <a href="#!/{{tag.id}}" id="endpointListTogger_{{tag.id}}" 
+      <a href="#!/{{tag.id}}" id="endpointListToggler_{{tag.id}}" 
         class="toggleEndpointList" data-id="{{tag.id}}" 
         data-sw-translate="">
         Show/Hide
@@ -28,9 +28,7 @@
 <ul 
   class="endpoints" 
   id="{{tag.id}}_endpoint_list">
-  <li
-    class="endpoint"
-    ng-include src="'templates/swagger-ui/operation.html'"
-    ng-repeat="operation in tag.operations">
-  </li>
+  
+  <swagger-operation ng-repeat="endpoint in tag.endpoints">
+  </swagger-operation>
 </ul>
