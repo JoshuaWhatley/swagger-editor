@@ -23,6 +23,7 @@ SwaggerEditor.directive('swaggerOperation', function(defaults) {
       */
       $scope.getParameters = function getParameters() {
         if (!$scope.path || !$scope.operation && $scope.endpoint) {
+          $scope.randomId = Math.random();
           $scope.path = $scope.endpoint.path;
           $scope.operation = $scope.endpoint.operation;
         }

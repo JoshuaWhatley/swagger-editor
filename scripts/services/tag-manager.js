@@ -50,11 +50,11 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
       });
     }
 
-    _.each(spec.paths, function(endpoint, path) {
-      _.each(endpoint, function(operation, verb) {
+    _.each(spec.paths, function(path, pathName) {
+      _.each(path, function(operation, verb) {
         if (_.isObject(operation)) {
           _.each(operation.tags, function(tag) {
-            registerEndpoint(path, verb, endpoint, operation, tag);
+            registerEndpoint(pathName, verb, path, operation, tag);
           });
         }
       });
@@ -86,16 +86,16 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
   }
 
   /**
-   * @param {string}    path - path to endpoint
+   * @param {string}    pathName - path name
    * @param {string}    verb - http verb
-   * @param {Endpoint}  endpoint - endpoint
+   * @param {Path}      path - path
    * @param {Operation} operation - operation
    * @param {string}    tagName - tag name
    * @param {string}    tagDescription - description
   */
-  function registerEndpoint(path, verb, endpoint, operation,
+  function registerEndpoint(pathName, verb, path, operation,
     tagName, tagDescription) {
-    if (!path || !tagName) {
+    if (!pathName || !tagName) {
       return;
     }
     var tag = _.find(tags, function(entry) {
@@ -106,10 +106,10 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
       tags.push(tag);
     }
     var existingEndpoint = _.find(tag.endpoints, function(entry) {
-      return entry.path === path && entry.verb === verb;
+      return entry.pathName === pathName && entry.verb === verb;
     });
     if (!existingEndpoint) {
-      tag.endpoints.push({pathUri: path, verb, path: endpoint, operation});
+      tag.endpoints.push({pathName, verb, path, operation});
     }
   }
 
