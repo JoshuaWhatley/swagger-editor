@@ -3,9 +3,10 @@
 var JSONFormatter = require('json-formatter-js');
 var JSONSchemaView = require('json-schema-view-js');
 
-SwaggerEditor.directive('schemaModel', function() {
+SwaggerEditor.directive('schemaModel', function(defaults) {
   return {
-    template: require('templates/schema-model.html'),
+    template: require('templates/preview/' + defaults.previewTemplate +
+      '/schema-model.html'),
     restrict: 'E',
     replace: true,
     scope: {
@@ -15,8 +16,12 @@ SwaggerEditor.directive('schemaModel', function() {
     link: function postLink($scope, $element) {
       $scope.mode = 'schema';
 
-      $scope.switchMode = function() {
-        $scope.mode = $scope.mode === 'json' ? 'schema' : 'json';
+      $scope.switchMode = function(mode) {
+        if (mode) {
+          $scope.mode = mode;
+        } else {
+          $scope.mode = $scope.mode === 'json' ? 'schema' : 'json';
+        }
       };
 
       var render = function() {

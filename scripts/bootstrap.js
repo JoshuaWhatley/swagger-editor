@@ -78,9 +78,6 @@ $(function() {
       $templateCache.put('templates/reset-editor.html',
         require('templates/reset-editor.html'));
 
-      $templateCache.put('templates/schema-model.html',
-        require('templates/schema-model.html'));
-
       $templateCache.put('templates/security.html',
         require('templates/security.html'));
 
@@ -114,6 +111,9 @@ $(function() {
       $templateCache.put('templates/default/preview.html',
         require('templates/preview/default/preview.html'));
 
+      $templateCache.put('templates/default/schema-model.html',
+        require('templates/preview/default/schema-model.html'));
+
       $templateCache.put('templates/swagger-ui/preview.html',
         require('templates/preview/swagger-ui/preview.html'));
 
@@ -125,6 +125,9 @@ $(function() {
 
       $templateCache.put('templates/swagger-ui/operation.html',
         require('templates/preview/swagger-ui/operation.html'));
+
+      $templateCache.put('templates/swagger-ui/schema-model.html',
+        require('templates/preview/swagger-ui/schema-model.html'));
     });
 
     angular.bootstrap(window.document, ['SwaggerEditor']);
