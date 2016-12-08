@@ -15,8 +15,8 @@
           <span class="path">
             <a 
               href="#!/{{tag.id}}/{{endpoint.operation.operationId}}"
-              class="toggleOperation">
-              {{endpoint.pathUri}}
+              class="toggleOperation {{endpoint.operation.deprecated ? 'deprecated' : ''}}">
+              {{endpoint.pathName}}
             </a>
           </span>
         </h3>
