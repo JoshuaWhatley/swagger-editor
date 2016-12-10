@@ -2,20 +2,20 @@
   <ul class="operations">
     <li
       class="operation {{endpoint.verb}}" 
-      id="{{tag.id}}_{{endpoint.operation.operationId}}">
+      id="{{tag.id}}_{{operation.operationId}}">
       <div class="heading">
         <h3>
           <span class="http_method">
             <a
-              href="#!/{{tag.id}}/{{endpoint.operation.operationId}}"
+              href="#!/{{tag.id}}/{{operation.operationId}}"
               class="toggleOperation">
               {{endpoint.verb}}
             </a>
           </span>
           <span class="path">
             <a 
-              href="#!/{{tag.id}}/{{endpoint.operation.operationId}}"
-              class="toggleOperation {{endpoint.operation.deprecated ? 'deprecated' : ''}}">
+              href="#!/{{tag.id}}/{{operation.operationId}}"
+              class="toggleOperation {{operation.deprecated ? 'deprecated' : ''}}">
               {{endpoint.pathName}}
             </a>
           </span>
@@ -23,10 +23,10 @@
         <ul class="options">
           <li>
             <a 
-              href="#!/{{tag.id}}/{{endpoint.operation.operationId}}"
+              href="#!/{{tag.id}}/{{operation.operationId}}"
               class="toggleOperation">
               <span class="markdown">
-                <p>{{endpoint.operation.summary}}</p>
+                <p>{{operation.summary}}</p>
               </span>
             </a>
           </li>
@@ -35,7 +35,26 @@
 
       <div 
         class="content" 
-        id="{{tag.id}}_{{endpoint.operation.operationId}}_content">
+        id="{{tag.id}}_{{operation.operationId}}_content">
+        <h4 ng-if="operation.description">
+          Implementation Notes
+        </h4>
+        <div ng-if="operation.description" class="markdown">
+          <p>{{operation.description}}</p>
+        </div>
+
+        <h4 ng-if="operation.responses[200]">
+          Response Class (Status 200)
+        </h4>
+        <div 
+          ng-if="operation.responses[200] && operation.responses[200].description"
+          class="markdown">
+          {{operation.responses[200].description}}
+        </div>
+        <p ng-if="operation.responses[200] && operation.responses[200].schema">
+          <schema-model schema="operation.responses[200].schema"></schema-model>
+        </p>
+
         <form accept-charset="UTF-8" class="sandbox">
           <h4 data-sw-translate>Parameters</h4>
           <table class="fullwidth parameters">
@@ -96,13 +115,70 @@
                   marked="parameter.description"
                   class="{{parameter.required || parameter.name === 'body' ? 'required' : ''}}"></td>
                 <td>{{parameter.in}}</td>
-                <td>
+                <td class="schema-model">
                   <schema-model schema="parameter.schema"></schema-model>
                 </td>
               </tr>
             </tbody>
           </table>
+
+          <table 
+            ng-if="hasNonSuccessResponse(operation.responses)"
+            class="fullwidth response-messages">
+            <thead>
+              <tr>
+                <th data-sw-translate="">HTTP Status Code</th>
+                <th data-sw-translate="">Reason</th>
+                <th data-sw-translate="">Response Model</th>
+                <th data-sw-translate="">Headers</th>
+              </tr>
+            </thead>
+            <tbody class="operation-status">
+              <tr ng-repeat="(responseCode, response) in nonSuccessResponses(operation.responses)">
+                <td width="15%" class="code">
+                  <a
+                    ng-click="focusEdit($event, [
+                      'paths',
+                      endpoint.pathName,
+                      endpoint.verb,
+                      'responses',
+                      responseCode])"
+                    tooltip-placement="top"
+                    uib-tooltip="To Spec"
+                    tooltip-trigger="mouseenter">
+                    {{responseCode}}
+                  </a>
+                </td>
+                <td class="markdown">
+                  <p>{{response.description}}</p>
+                </td>
+                <td width="50%">
+                  <schema-model ng-if="response.schema" schema="response.schema"></schema-model>
+                </td>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="sandbox_header">
+            <input class="submit" type="submit" value="Try it out!" data-sw-translate="">
+            <a href="#" class="response_hider" style="display:none" data-sw-translate="">Hide Response</a>
+            <span class="response_throbber" style="display:none"></span>
+          </div>
         </form>
+
+        <div class="response" style="display:none">
+          <h4 class="curl">Curl</h4>
+          <div class="block curl"></div>
+          <h4 data-sw-translate="">Request URL</h4>
+          <div class="block request_url"></div>
+          <h4 data-sw-translate="">Response Body</h4>
+          <div class="block response_body"></div>
+          <h4 data-sw-translate="">Response Code</h4>
+          <div class="block response_code"></div>
+          <h4 data-sw-translate="">Response Headers</h4>
+          <div class="block response_headers"></div>
+        </div>
       </div>
     </li>
   </ul>

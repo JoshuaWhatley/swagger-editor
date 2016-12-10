@@ -130,6 +130,29 @@ SwaggerEditor.directive('swaggerOperation', function(defaults) {
           return param.description;
         });
       };
+
+      /**
+       * Returns true if the operation responses returns a response code other
+       * than 200
+       *
+       * @param {object} responses - a hash of responses
+       * @return {boolean} - true/false
+      */
+      $scope.hasNonSuccessResponse = function(responses) {
+        return _.keys(responses).some(function(responseCode) {
+          return responseCode !== 200;
+        });
+      };
+
+      /**
+       * Returns responses with success response omitted
+       *
+       * @param {object} responses - a hash of responses
+       * @return {Responses} - a hash of responses
+      */
+      $scope.nonSuccessResponses = function(responses) {
+        return _.omit(responses, 200);
+      };
     }
   };
 });
