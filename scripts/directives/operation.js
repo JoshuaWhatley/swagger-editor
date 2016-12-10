@@ -140,7 +140,7 @@ SwaggerEditor.directive('swaggerOperation', function(defaults) {
       */
       $scope.hasNonSuccessResponse = function(responses) {
         return _.keys(responses).some(function(responseCode) {
-          return responseCode !== 200;
+          return responseCode !== '200';
         });
       };
 

@@ -1,7 +1,7 @@
 <li class="endpoint">
   <ul class="operations">
     <li
-      class="operation {{endpoint.verb}}" 
+      class="{{endpoint.verb}} operation" 
       id="{{tag.id}}_{{operation.operationId}}">
       <div class="heading">
         <h3>
@@ -56,8 +56,10 @@
         </p>
 
         <form accept-charset="UTF-8" class="sandbox">
-          <h4 data-sw-translate>Parameters</h4>
-          <table class="fullwidth parameters">
+          <h4 data-sw-translate ng-if="getParameters().length">Parameters</h4>
+          <table 
+            ng-if="getParameters().length"
+            class="fullwidth parameters">
             <thead>
               <th style="width: 100px; max-width: 100px" data-sw-translate="">Parameter</th>
               <th style="width: 310px; max-width: 310px" data-sw-translate="">Value</th>
