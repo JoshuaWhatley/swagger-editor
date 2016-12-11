@@ -1,26 +1,31 @@
 <span class="model-signature">
-  <ul class="signature-nav">
-    <li>
-      <a 
-        class="description-link" 
-        href="#" 
-        data-sw-translate
-        ng-click="switchMode('json')">Model</a>
-    </li>
-    <li>
-      <a
-        class="snippet-link selected"
-        href="#"
-        data-sw-translate
-        ng-click="switchMode('schema')">Example Value</a>
-    </li>
-  </ul>
-  <div class="signature-container">
-    <div class="snippet">
-        <div class="description" ng-show="mode === 'json'"></div>
-        <div class="snippet_json" ng-show="mode === 'schema'">
-          <pre><code class="hljs json"></code></pre>
-        </div>
+  <div ng-if="isPrimitive()">
+    {{getPrimitiveSignature()}}
+  </div>
+  <div ng-if="!isPrimitive()">
+    <ul class="signature-nav">
+      <li>
+        <a 
+          class="description-link" 
+          href="#" 
+          data-sw-translate
+          ng-click="switchMode('json')">Model</a>
+      </li>
+      <li>
+        <a
+          class="snippet-link selected"
+          href="#"
+          data-sw-translate
+          ng-click="switchMode('schema')">Example Value</a>
+      </li>
+    </ul>
+    <div class="signature-container">
+      <div class="snippet">
+          <div class="description" ng-show="mode === 'json'"></div>
+          <div class="snippet_json" ng-show="mode === 'schema'">
+            <pre><code class="hljs json"></code></pre>
+          </div>
+      </div>
     </div>
   </div>
 </span>

@@ -133,6 +133,29 @@ SwaggerEditor.directive('schemaModel', function(defaults) {
         }
       };
 
+      $scope.getPrimitiveSignature = function() {
+        var items = $scope.schema.items || {};
+        var type = $scope.schema.type || '';
+
+        switch (type) {
+          case 'object':
+            return 'Object is not a primitive';
+          case 'array' :
+            return 'Array[' + items.type + ']';
+          default:
+            return type;
+        }
+      };
+
+      $scope.isPrimitive = function() {
+        if ($scope.schema.type === 'array' &&
+          $scope.schema.items.type === 'object') {
+          return false;
+        }
+
+        return $scope.schema && $scope.schema.type !== 'object';
+      };
+
       $scope.mode = 'schema';
 
       $scope.switchMode = function(mode) {

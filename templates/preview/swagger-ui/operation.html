@@ -49,7 +49,7 @@
         <div 
           ng-if="operation.responses[200] && operation.responses[200].description"
           class="markdown">
-          {{operation.responses[200].description}}
+          <p>{{operation.responses[200].description}}</p>
         </div>
         <p ng-if="operation.responses[200] && operation.responses[200].schema">
           <schema-model schema="operation.responses[200].schema"></schema-model>
