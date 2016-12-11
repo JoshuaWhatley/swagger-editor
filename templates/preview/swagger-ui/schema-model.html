@@ -16,7 +16,11 @@
     </li>
   </ul>
   <div class="signature-container">
-    <div class="view json description" ng-show="mode === 'json'"></div>
-    <div class="view schema snippet" ng-show="mode === 'schema'"></div>
+    <div class="snippet">
+        <div class="description" ng-show="mode === 'json'"></div>
+        <div class="snippet_json" ng-show="mode === 'schema'">
+          <pre><code class="hljs json"></code></pre>
+        </div>
+    </div>
   </div>
 </span>
