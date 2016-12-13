@@ -109,7 +109,12 @@ SwaggerEditor.service('TagManager', function TagManager($stateParams) {
       return entry.pathName === pathName && entry.verb === verb;
     });
     if (!existingEndpoint) {
-      tag.endpoints.push({pathName, verb, path, operation});
+      tag.endpoints.push({
+        pathName: pathName,
+        verb: verb,
+        path: path,
+        operation: operation
+      });
     }
   }
 
